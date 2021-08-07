@@ -3,12 +3,12 @@ import React from 'react';
 import Directory from '../../components/directory/directory.component';
 
 
-import './homepage.stayle.scss';
+import { HomePageContainer } from './homepage.style';
 
 const HomePage = ({ history }) => (
-    <div className="homepage">
+    <HomePageContainer>
         <Directory history={history}/>
-    </div>
+    </HomePageContainer>
 )
 
 export default HomePage;
