@@ -17,8 +17,10 @@ import './App.css';
 
 class App extends React.Component {
   unsubscribeFromAuth = null
+
   componentDidMount() {
     const {setCurrentUser} = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       // this.setState({ currentUser: user});
       if (userAuth) {
@@ -31,7 +33,9 @@ class App extends React.Component {
             });
         });      
       }
-      else setCurrentUser(userAuth)
+      setCurrentUser(userAuth);
+      // Malumotlarni firestore ga saqlash uchun ishlatilgan
+      // addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({ title, items })));
     })
   }
 

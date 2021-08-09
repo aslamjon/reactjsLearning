@@ -16,9 +16,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);
-
+    // console.log(userRef); // biz xoxlagan id database da bo'lmasa ham obj qaytaradi
     const snapShot = await userRef.get();
-
+    // qidirgan narsani database da olib kelishni so'rayapmiz
+    // agar bu haqida malumot bo'lmasa .exists false bo'ladi
     // console.log(snapShot);
 
     if (!snapShot.exists) {
@@ -39,7 +40,38 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 }
 
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+    console.log(collectionKey);
+
+    const batch = firestore.batch();
+
+    objectsToAdd.forEach(obj => {
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, obj);
+    })
+    return await batch.commit();
+
+}
+
 firebase.initializeApp(config);
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+    const transformedCollection = collections.docs.map(doc => {
+        const { title, items } = doc.data();
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items
+        }
+    });
+    // array ni obj ga aylantirib qayta yuboramiz
+    return transformedCollection.reduce((accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    }, {});
+}
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

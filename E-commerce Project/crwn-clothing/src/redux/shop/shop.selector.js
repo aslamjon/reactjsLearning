@@ -9,7 +9,7 @@ export const selectCollections = createSelector(
 // Object.keys get keys in array
 export const selectCollectionForPreview = createSelector(
     [selectCollections],
-    collections => Object.keys(collections).map(key => collections[key])
+    collections => collections ?  Object.keys(collections).map(key => collections[key]) : []
 ) 
 
 // **************** oldingisi **********************
@@ -31,5 +31,5 @@ export const selectCollectionForPreview = createSelector(
 // collection.component dan kelgan parametrni collections ni key ga qo'yamiz va u bizga o'sha key ga teshishli malumotni olib beladi
 export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
 )
