@@ -6,7 +6,7 @@ import { CollectionPreviewContainer, TitleContainer, PreviewContainer } from './
 
 const CollectionPreview = ({ title, items }) => (
     <CollectionPreviewContainer>
-        <TitleContainer>{title.toUpperCase()}</TitleContainer>
+        <TitleContainer to={`shop/${title.toLowerCase()}`}>{title.toUpperCase()}</TitleContainer>
         <PreviewContainer>
             {items
                 .filter((item, idx) => idx < 4)
