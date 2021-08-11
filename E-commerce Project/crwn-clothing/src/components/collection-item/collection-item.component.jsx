@@ -12,7 +12,7 @@ const CollectionItem = ({ item, addItem }) => {
         <ImageStyle className='image' imageUrl={imageUrl}/>
         <CollectionFooterStyle>
             <NameSpanStyle>{name}</NameSpanStyle>
-            <PriceSpanStyle>{price}</PriceSpanStyle>
+            <PriceSpanStyle>${price}</PriceSpanStyle>
         </CollectionFooterStyle>
     <AddItemStyle onClick={() => addItem(item)} inverted> Add to cart </AddItemStyle>
     </CollectionItemStyles>

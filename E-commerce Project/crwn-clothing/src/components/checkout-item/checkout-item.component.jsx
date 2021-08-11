@@ -15,10 +15,10 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
         <TextContainer>{name}</TextContainer>
         <QuantityContainer>
             <div className="arrow" onClick={() => removeItem(cartItem)}>&#10094;</div>
-            <div className="value">{quantity}</div>
+            <span className="value">{quantity}</span>
             <div className="arrow" onClick={() => addItem(cartItem)}>&#10095;</div>
         </QuantityContainer>
-        <TextContainer>{price}</TextContainer>
+        <TextContainer>${price}</TextContainer>
         <RemoveButtonContainer onClick={() => clearItem(cartItem)}>&#10005;</RemoveButtonContainer>
         {/* clearItem orqali to'liq obj ni yuborayapmiz */}
     </CheckoutItemContainer>
